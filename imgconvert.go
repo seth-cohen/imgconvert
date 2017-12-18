@@ -142,7 +142,7 @@ func saveFile(r io.Reader, fName string) error {
 
 func convertFile(fileName string, out string) {
 	fmt.Println("Converting File: ", fileName, " To: ", out)
-	cmd := exec.Command("/Users/sethcohen/Documents/Misc_Repos/tifig/build/tifig", fileName, out)
+	cmd := exec.Command("/Users/scohen/Documents/Misc_Repos/tifig/build/tifig", fileName, out)
 
 	tifigOut, err := cmd.Output()
 	if err != nil {
