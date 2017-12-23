@@ -7,16 +7,94 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-	<header>
-	  <h1>Convert Apple iOS 11 HEIC Images to JPEG <span class="badge badge-secondary">New</span></h1>
-	</header>
-	<form enctype="multipart/form-data" action="/convert" method="POST">
-	  <div class="form-group">
-		<label for="fileUpload">Example file input</label>
-		<input type="file" class="form-control-file" id="fileUpload" name="uploadfile">
-	  </div>
-	  <button type="submit" class="btn btn-primary">Convert</button>
-	</form>
+	<section class="container">
+	  <header>
+		<h1>Convert Apple iOS 11 HEIC Images to JPEG <span class="badge badge-secondary">New</span></h1>
+	  </header>
+	  <h2>Having trouble viewing photos you've taken on iPhone?</h2>
+	  <p>
+		Apple recently launched iOS 11 and, with it, they've rolled out a
+		<a href="https://fileinfo.com/extension/heic">new file format</a> that is
+		not readily viewable on all devices. Convert them to your beloved JPEG below.
+	  </p>
+	  <form enctype="multipart/form-data" action="/convert" method="POST"
+class="card">
+		<div class="card-header">Choose Files to Convert</div>
+		<div class="card-body">
+		  <div class="form-group row">
+			<div class="col-sm-4">
+			  <label class="btn btn-secondary">
+				Select Files
+				<input type="file" class="hidden-xs-up js-file-input" name="uploadfile"
+					   onchange="filesSelected()"
+					   hidden multiple>
+			  </label>
+			</div>
+			<span class="col">You have selected <span class="js-count">0</span> file(s)</span>
+		  </div>
+		  <button type="submit" class="btn btn-primary float-right">Convert</button>
+		</div>
+	  </form>
+	  <div class="js-list"></div>
+	  <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	  <ins class="adsbygoogle"
+		   style="display:block; text-align:center;"
+		   data-ad-layout="in-article"
+		   data-ad-format="fluid"
+		   data-ad-client="ca-pub-5453350025781479"
+		   data-ad-slot="2092566710"></ins>
+	  <script>
+	   (adsbygoogle = window.adsbygoogle || []).push({});
+	  </script>
+	  <p>	
+		The <a href="https://fileinfo.com/extension/heic">HEIC</a> file format is not readily viewable on all
+		devices. As such, I've created this friendly application to bulk convert HEIC files to the JPEG file
+		format that we've grown to love. <span class="text-danger">Note, however, that eventually
+		you will want to move to HEIC once support is ubiquitous. It is a beneficial file format providing
+		half file size for similar quality as jpec format.
+	  </p>
+	</section>
   </body>
+  <script type="text/javascript">
+   function filesSelected() {
+	 const inputEl = document.getElementsByClassName("js-file-input")[0];
+	 const countFiles = inputEl.files.length || 0;
+	 const fileListEl = document.getElementsByClassName("js-list")[0];
+	 const fileCountEl = document.getElementsByClassName("js-count")[0];
+	   const docFrag = document.createDocumentFragment();
+	 if (countFiles == 0) {
+	   while (fileListEl.firstChild) {
+		 fileListEl.removeChild(fileListEl.firstChild);
+	   }
+	 } else {
+	   const section = document.createElement("section");
+	   const header = document.createElement("h3");
+	   header.innerHTML = "Convert Files:";
+	   section.appendChild(header)
+
+	   const ulFiles = document.createElement("ul");
+	   ulFiles.className = "list-group";
+	   
+	   for (let i = 0; i < countFiles; i++) {
+		 const li = document.createElement("li");
+		 const file = inputEl.files[i];
+		 li.className = "list-group-item";
+		 li.appendChild(document.createTextNode(file.name));
+
+		 const progress = document.createElement("div");
+		 progress.className = "progress";
+		 progress.innerHTML = "<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-volumemax=\"100\"></div>";
+		 li.appendChild(progress);
+		 ulFiles.appendChild(li);
+	   }
+
+	   section.appendChild(ulFiles);
+	   docFrag.appendChild(section);
+	 }
+	 fileListEl.innerHTML = "";
+	 fileListEl.appendChild(docFrag);
+	 fileCountEl.innerHTML = countFiles;
+   }
+  </script>
 </html>
 
