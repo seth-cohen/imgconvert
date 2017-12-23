@@ -11,10 +11,13 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"os/user"
 	"path/filepath"
 	"strings"
 	"time"
 )
+
+var homeDir string
 
 func main() {
 	cmd := exec.Command("date")
@@ -22,11 +25,16 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
-
 	fmt.Printf(string(dateOut))
 
-	registerHandlers()
+	usr, err := user.Current()
+	if err != nil {
+		log.Fatal(err)
+	}
+	homeDir = usr.HomeDir
+	fmt.Println(homeDir)
 
+	registerHandlers()
 	http.ListenAndServe(":8081", nil)
 }
 
@@ -142,7 +150,7 @@ func saveFile(r io.Reader, fName string) error {
 
 func convertFile(fileName string, out string) {
 	fmt.Println("Converting File: ", fileName, " To: ", out)
-	cmd := exec.Command("/Users/sethcohen/Documents/Misc_Repos/tifig/build/tifig", fileName, out)
+	cmd := exec.Command(homeDir+"/Documents/Misc_Repos/tifig/build/tifig", fileName, out)
 
 	tifigOut, err := cmd.Output()
 	if err != nil {
