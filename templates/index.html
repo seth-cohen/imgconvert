@@ -1,15 +1,22 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
 	<meta charset="utf-8">
 	<title>Convert HEIC to JPG</title>
-    </head>
-    <body>
-	<header>Convert HEIC files</header>
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body>
+	<header>
+	  <h1>Convert Apple iOS 11 HEIC Images to JPEG <span class="badge badge-secondary">New</span></h1>
+	</header>
 	<form enctype="multipart/form-data" action="/convert" method="POST">
-	    <input type="file" name="uploadfile" multiple/>
-	    <button type="submit">Convert</button>
+	  <div class="form-group">
+		<label for="fileUpload">Example file input</label>
+		<input type="file" class="form-control-file" id="fileUpload" name="uploadfile">
+	  </div>
+	  <button type="submit" class="btn btn-primary">Convert</button>
 	</form>
-    </body>
+  </body>
 </html>
 
