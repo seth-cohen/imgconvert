@@ -47,6 +47,7 @@ func registerHandlers() {
 	r.HandleFunc("/convert", convertHandler)
 	r.HandleFunc("/socket", socketHandler)
 	r.HandleFunc("/download", downloadFileHandler)
+	r.HandleFunc("/favicon.ico", handleFavicon)
 	r.HandleFunc("/", index)
 	http.Handle("/", r)
 }
@@ -152,6 +153,10 @@ func createZip(fileName string, imgDir string) error {
 func index(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("templates/index.html")
 	t.Execute(w, nil)
+}
+
+func handleFavicon(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/favicon.ico")
 }
 
 func convertHandler(w http.ResponseWriter, r *http.Request) {
