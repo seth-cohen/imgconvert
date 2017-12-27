@@ -106,7 +106,6 @@
 	 }
 	 fileCountEl.innerHTML = '0';
 	 inputEl.value = '';
-	 document.cookie = 'txid=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path/;';
    }
    function filesSelected() {
 	 const inputEl = document.querySelector('.js-file-input');
@@ -202,39 +201,41 @@
 			   progress.style.width = pct.toString() + '%';
 			 }
 			 if (data.loaded >= data.total) {
-			   const header = document.querySelector('.js-status');
-			   header.innerHTML = 'Converting Files:';
-			   // open websocket
-			   const fileListEl = document.querySelectorAll('.js-list .list');
-			   const socket = new WebSocket('ws://' + window.location.hostname + (location.port ? ':' + location.port : '') +
-											'/socket');
-			   socket.onopen = function (event) {
-				 socket.send("Here's some text that the server is urgently awaiting!");
-			   };
-			   socket.onmessage = function (event) {
-				 const map = JSON.parse(event.data)
-				 const convertedFiles = [];
-				 const progressBars = document.querySelectorAll('.js-file-progress');
-				 for (const prop in map) {
-				   convertedFiles.push(stripExtension(basename(prop, '/')));
-				 }
-				 for (let i = 0; i < progressBars.length; i++) {
-				   if (convertedFiles.indexOf(stripExtension(basename(progressBars[i].innerText))) !== -1) {
-					 const progress = progressBars[i].querySelector('.progress-bar');
-					 const status = progressBars[i].querySelector('.js-file-status');
-					 status.innerHTML = 'Converted';
-					 progress.className = progress.className + ' bg-success';
+			   setTimeout(function() {
+				 const header = document.querySelector('.js-status');
+				 header.innerHTML = 'Converting Files:';
+				 // open websocket
+				 const fileListEl = document.querySelectorAll('.js-list .list');
+				 const socket = new WebSocket('ws://' + window.location.hostname + (location.port ? ':' + location.port : '') +
+											  '/socket');
+				 socket.onopen = function (event) {
+				   socket.send("Here's some text that the server is urgently awaiting!");
+				 };
+				 socket.onmessage = function (event) {
+				   const map = JSON.parse(event.data)
+				   const convertedFiles = [];
+				   const progressBars = document.querySelectorAll('.js-file-progress');
+				   for (const prop in map) {
+					 convertedFiles.push(stripExtension(basename(prop, '/')));
 				   }
-				 } 
-				 if (map.hasOwnProperty('complete')) {
-				   const iframe = document.querySelector('.js-iframe');
-				   iframe.src = '/download';
-				   window.socket.close();
-				   const header = document.querySelector('.js-status');
-				   header.innerHTML = 'Downloading Zip:';
+				   for (let i = 0; i < progressBars.length; i++) {
+					 if (convertedFiles.indexOf(stripExtension(basename(progressBars[i].innerText))) !== -1) {
+					   const progress = progressBars[i].querySelector('.progress-bar');
+					   const status = progressBars[i].querySelector('.js-file-status');
+					   status.innerHTML = 'Converted';
+					   progress.className = progress.className + ' bg-success';
+					 }
+				   } 
+				   if (map.hasOwnProperty('complete')) {
+					 const iframe = document.querySelector('.js-iframe');
+					 iframe.src = '/download';
+					 window.socket.close();
+					 const header = document.querySelector('.js-status');
+					 header.innerHTML = 'Downloading Zip:';
+				   }
 				 }
-			   }
-			   window.socket = socket;
+				 window.socket = socket;
+			   }, 300);
 			 }
 		   };
 		   request.open(form.method, form.action);
