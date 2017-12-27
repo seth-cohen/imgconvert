@@ -20,25 +20,32 @@
 			<a href="https://fileinfo.com/extension/heic">new file format</a> that is
 			not readily viewable on all devices. Convert them to your beloved JPEG below.
 		  </p>
-		  <form enctype="multipart/form-data" action="/convert" method="POST"
-class="card">
+		  <form enctype="multipart/form-data" action="/convert" method="POST" class="card js-upload-form">
 			<div class="card-header">Choose Files to Convert</div>
 			<div class="card-body">
 			  <div class="form-group row">
 				<div class="col-sm-4">
-				  <label class="btn btn-secondary">
+				  <label class="btn btn-outline-secondary">
 					Select Files
 					<input type="file" class="hidden-xs-up js-file-input" name="uploadfile"
 						   onchange="filesSelected()"
+						   onclick="clearSelectedFiles()"
 						   hidden multiple>
 				  </label>
 				</div>
 				<span class="col">You have selected <span class="js-count">0</span> file(s)</span>
 			  </div>
-			  <button type="submit" class="btn btn-primary float-right">Convert</button>
+			  <div class="row justify-content-end">
+				<button type="submit" class="btn btn-primary">Convert</button>
+			  </div>
+			  <hr />
 			  <div class="js-list mt-4"></div>
 			</div>
 		  </form>
+		  <p>
+			Only HEIC files will be converted, others will be ignored. Once conversion is complete a Zip file with all
+			of the converted files will be downloaded. You can view conversion status above.
+		  </p>
 		  <div class="mt-4">
 			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 			<ins class="adsbygoogle"
@@ -51,7 +58,7 @@ class="card">
 			 (adsbygoogle = window.adsbygoogle || []).push({});
 			</script>
 		  </div>
-		  <p>	
+		  <p class="mt-4">	
 			The <a href="https://fileinfo.com/extension/heic">HEIC</a> file format is not readily viewable on all
 			devices. As such, I've created this friendly application to bulk convert HEIC files to the JPEG file
 			format that we've grown to love. <span class="text-danger">Note, however, that eventually
@@ -77,7 +84,7 @@ class="card">
 			<!-- heic-aside-2 -->
 			<ins class="adsbygoogle"
 				 style="display:block"
-				 data-ad-client="ca-pub-5453350025781479"
+				 data-ad-client="ca-pub-54533XF50025781479"
 				 data-ad-slot="5731718388"
 				 data-ad-format="auto"></ins>
 			<script>
@@ -87,36 +94,44 @@ class="card">
 		</aside>
 	  </div>
 	</section>
+	<iframe src="about:blank" class="js-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
   </body>
   <script type="text/javascript">
+   function clearSelectedFiles() {
+	 const inputEl = document.querySelector('.js-file-input');
+	 const fileListEl = document.querySelector('.js-list');
+	 const fileCountEl = document.querySelector('.js-count');
+	 while (fileListEl.firstChild) {
+	   fileListEl.removeChild(fileListEl.firstChild);
+	 }
+	 fileCountEl.innerHTML = '0';
+	 inputEl.value = '';
+   }
    function filesSelected() {
-	 const inputEl = document.getElementsByClassName("js-file-input")[0];
+	 const inputEl = document.querySelector('.js-file-input');
 	 const countFiles = inputEl.files.length || 0;
-	 const fileListEl = document.getElementsByClassName("js-list")[0];
-	 const fileCountEl = document.getElementsByClassName("js-count")[0];
+	 const fileListEl = document.querySelector('.js-list');
+	 const fileCountEl = document.querySelector('.js-count');
 	 const docFrag = document.createDocumentFragment();
-	 if (countFiles == 0) {
-	   while (fileListEl.firstChild) {
-		 fileListEl.removeChild(fileListEl.firstChild);
-	   }
-	 } else {
-	   const section = document.createElement("section");
-	   const header = document.createElement("h3");
-	   header.innerHTML = "Convert Files:";
+	 if (countFiles > 0) {
+	   const section = document.createElement('section');
+	   const header = document.createElement('h3');
+	   header.className = 'js-status';
+	   header.innerHTML = 'Uploading Files:';
 	   section.appendChild(header)
 
-	   const ulFiles = document.createElement("ul");
-	   ulFiles.className = "list-group";
+	   const ulFiles = document.createElement('ul');
+	   ulFiles.className = 'list-group';
 	   
 	   for (let i = 0; i < countFiles; i++) {
-		 const li = document.createElement("li");
+		 const li = document.createElement('li');
 		 const file = inputEl.files[i];
-		 li.className = "list-group-item";
-		 li.appendChild(document.createTextNode(file.name));
+		 li.className = 'list-group-item js-file-progress js-file-progress-' + i;
+		 li.innerHTML = '<span>' + file.name + '<span class="js-file-status float-right"><span>';
 
-		 const progress = document.createElement("div");
-		 progress.className = "progress"
-		 progress.innerHTML = "<div class=\"progress-bar\" role=\"progressbar\" aria-valuenow=\"25\" aria-valuemin=\"0\" aria-volumemax=\"100\"></div>";
+		 const progress = document.createElement('div');
+		 progress.className = 'progress';
+		 progress.innerHTML = '<div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-volumemax="100"></div>';
 		 li.appendChild(progress);
 		 ulFiles.appendChild(li);
 	   }
@@ -124,10 +139,118 @@ class="card">
 	   section.appendChild(ulFiles);
 	   docFrag.appendChild(section);
 	 }
-	 fileListEl.innerHTML = "";
+	 fileListEl.innerHTML = '';
 	 fileListEl.appendChild(docFrag);
 	 fileCountEl.innerHTML = countFiles;
    }
+   function clearProgress() {
+	 const inputEl = document.querySelector('.js-file-input');
+	 for (let i = 0; i < inputEl.files.length; i++) {
+	   const progress = document.querySelector('.js-file-progress-' + i + ' .progress-bar');
+	   progress.style.width = '0%';
+	 }
+   }
+   
+   function onload() {
+	 document
+	   .querySelector(".js-upload-form")
+	   .addEventListener('submit', function processForm(e) {
+		 e.preventDefault();
+		 clearProgress();
+
+		 const form = e.currentTarget;
+		 const multipleFiles = form.querySelector('input[type=file]');
+
+		 // only if there is something to do
+		 if (multipleFiles.files.length) {
+		   const submit = form.querySelector('[type=submit]');
+		   const request = new XMLHttpRequest();
+		   const fileData = [];
+		   let totalSize = 0;
+		   const formData = Array.prototype.reduce.call(
+			 multipleFiles.files,
+			 function (formData, file, i) {
+			   totalSize += file.size;
+			   fileData.push(file.size);
+			   formData.append(multipleFiles.name, file);
+			   return formData;
+			 },
+			 new FormData()
+		   );
+
+		   // avoid multiple repeated uploads
+		   // (histeric clicks on slow connection)
+		   submit.disabled = true;
+
+		   // do the request using form info
+		   request.onload = function(e) {
+			 // make this form usable again
+			 submit.disabled = false;
+		   };
+		   request.upload.onprogress = function(data) {
+			 let total = data.loaded;
+			 for (let i = 0; i < fileData.length; i++) {
+			   let pct = 0;
+			   total -= fileData[i];
+			   if (total >= 0) {
+				 pct = 100;
+			   } else {
+				 pct = Math.max(0, total / fileData[i]);
+			   }
+			   const progress = form.querySelector('.js-file-progress-' + i + ' .progress-bar');
+			   progress.style.width = pct.toString() + '%';
+			 }
+			 if (data.loaded >= data.total) {
+			   const header = document.querySelector('.js-status');
+			   header.innerHTML = 'Converting Files:';
+			   // open websocket
+			   const fileListEl = document.querySelectorAll('.js-list .list');
+			   const socket = new WebSocket('ws://localhost:8081/socket');
+			   socket.onopen = function (event) {
+				 socket.send("Here's some text that the server is urgently awaiting!");
+			   };
+			   socket.onmessage = function (event) {
+				 const map = JSON.parse(event.data)
+				 const convertedFiles = [];
+				 const progressBars = document.querySelectorAll('.js-file-progress');
+				 for (const prop in map) {
+				   convertedFiles.push(stripExtension(basename(prop, '/')));
+				 }
+				 for (let i = 0; i < progressBars.length; i++) {
+				   if (convertedFiles.indexOf(stripExtension(basename(progressBars[i].innerText))) !== -1) {
+					 const progress = progressBars[i].querySelector('.progress-bar');
+					 const status = progressBars[i].querySelector('.js-file-status');
+					 status.innerHTML = 'Converted';
+					 progress.className = progress.className + ' bg-success';
+				   }
+				 } 
+				 if (map.hasOwnProperty('complete')) {
+				   const iframe = document.querySelector('.js-iframe');
+				   iframe.src = '/download';
+				   window.socket.close();
+				   const header = document.querySelector('.js-status');
+				   header.innerHTML = 'Downloading Zip:';
+				 }
+			   }
+			   window.socket = socket;
+			 }
+		   };
+		   request.open(form.method, form.action);
+		   request.responseType = 'blob';
+		   // want to distinguish from non-JS submits
+		   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+		   request.send(formData);
+		 }
+	   });
+   };
+   function basename(str, sep) {
+	 const separator = sep || '/';
+	 return str.substr(str.lastIndexOf(separator) + 1);
+   }
+   function stripExtension(str) {
+	 return str.substr(0, str.lastIndexOf('.'));
+   }
+   document.addEventListener('DOMContentLoaded', function() { onload(); }, false);
   </script>
 </html>
 
