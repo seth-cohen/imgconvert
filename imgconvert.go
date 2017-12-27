@@ -229,6 +229,7 @@ func convertHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func socketHandler(w http.ResponseWriter, r *http.Request) {
+	fmt.Print(r.Header)
 	keyCookie, err := r.Cookie("txid")
 	if err != nil {
 		log.Println("Socket Cookie: ", err)
