@@ -205,7 +205,7 @@
 			   header.innerHTML = 'Converting Files:';
 			   // open websocket
 			   const fileListEl = document.querySelectorAll('.js-list .list');
-			   const socket = new WebSocket('ws://localhost:8081/socket');
+			   const socket = new WebSocket('ws://' + window.location.hostname + '/socket');
 			   socket.onopen = function (event) {
 				 socket.send("Here's some text that the server is urgently awaiting!");
 			   };
