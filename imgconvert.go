@@ -55,7 +55,7 @@ func registerHandlers() {
 func handlePart(p *multipart.Part, txid string, ch chan<- []string) {
 	if p.FormName() == "uploadfile" {
 		fmt.Println("got a file: ", p)
-		if filepath.Ext(p.FileName()) == ".HEIC" {
+		if strings.ToLower(filepath.Ext(p.FileName())) == ".heic" {
 			fn := "/tmp/" + txid + "/" + p.FileName()
 			if err := saveFile(p, fn); err != nil {
 				log.Fatal("Save File: ", err)
@@ -99,7 +99,7 @@ func createZip(fileName string, imgDir string) error {
 	}
 	files := []string{}
 	for _, item := range items {
-		if !item.IsDir() && filepath.Ext(item.Name()) != ".HEIC" {
+		if !item.IsDir() && strings.ToLower(filepath.Ext(item.Name())) != ".heic" {
 			files = append(files, imgDir+"/"+item.Name())
 		}
 	}

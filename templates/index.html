@@ -236,6 +236,7 @@
 				   socket.send("Here's some text that the server is urgently awaiting!");
 				 };
 				 socket.onmessage = function (event) {
+			           console.log(event);
 				   const map = JSON.parse(event.data)
 				   const convertedFiles = [];
 				   const progressBars = document.querySelectorAll('.js-file-progress');
