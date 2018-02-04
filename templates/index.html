@@ -1,284 +1,318 @@
 <!DOCTYPE html>
 <html>
   <head>
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-111613427-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-111613427-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-	  gtag('config', 'UA-111613427-1');
-	</script>
-	<meta charset="utf-8">
-	<title>Convert HEIC to JPG for FREE</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta name="description" content="The best free online HEIC to JPEG/JPG converter. No restrictions. Convert in bulk." />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Free HEIC to JPEG/JPG Online Photo Conversion Tool" />
-	<meta property="og:description" content="HEIC converter is a free online tool that converts iOS 11 photos from HEIC to JPEG/JPG, made just for you by the Meta-WebDev" />
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@meta_webdev" />
-	<meta name="twitter:creator" content="@meta_webdev">
-	<meta name="twitter:title" content="Convert Heic to JPEG for free | Meta-WebDev" />
-	<meta name="twitter:description" content=" HeictoJPG converter is a free online tool that converts iOS 11 photos from HEIC to JPEG/JPG" />
-	<meta name="copyright" content="Copyright © 2017 Meta-WebDev" />
-	<meta name="author" content="Meta-WebDev" />
-	<meta rel="author" href="https://meta-webdev.com" />
+      gtag('config', 'UA-111613427-1');
+    </script>
+    <meta charset="utf-8">
+    <title>Convert HEIC Images to JPG/JPEG. Free Photo Conversion Tool</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="HEIC converter is the fastest online tool to convert HEIC image files, 
+				      like those taken on your iOS iPhone to JPEG/JPG. Made just for you by the
+				      Meta-WebDev. A tool that is and will always be free. Images are all processed
+				      in parallel for optimal performance." />
+    <meta property="og:url" content="http://heic-to-jpeg.meta-webdev.com" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Convert HEIC Images to JPG/JPEG. Free Photo Conversion Tool" />
+    <meta property="og:image" content="heic-screenshot.jpg" />
+    <meta property="og:description" content="HEIC converter is the fastest online tool to convert HEIC image files, 
+					     like those taken on your iOS iPhone to JPEG/JPG. Made just for you by the
+					     Meta-WebDev. A tool that is and will always be free. Images are all processed
+					     in parallel for optimal performance." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@meta_webdev" />
+    <meta name="twitter:creator" content="@meta_webdev">
+    <meta name="twitter:title" content="Convert Heic to JPEG for free | Meta-WebDev" />
+    <meta name="twitter:description" content=" HeictoJPG converter is a free online tool that converts iOS 11 photos from HEIC to JPEG/JPG" />
+    <meta name="copyright" content="Copyright © 2018 Meta-WebDev" />
+    <meta name="author" content="Meta-WebDev" />
+    <meta rel="author" href="https://meta-webdev.com" />
 
-	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-	<section class="container">
-	  <header class="text-center">
-		<h1>Convert Apple iOS 11 HEIC Images to JPEG <span class="badge badge-secondary">Free</span></h1>
-	  </header>
-	  <hr />
-	  <div class="row">
-		<main class="col-md-8">
-		  <h2>Having trouble viewing photos you've taken on iPhone?</h2>
-		  <p>
-			Apple recently launched iOS 11 and, with it, they've rolled out a
-			<a href="https://fileinfo.com/extension/heic">new file format</a> that is
-			not readily viewable on all devices. Convert them to your beloved JPEG below.
-		  </p>
-		  <form enctype="multipart/form-data" action="/convert" method="POST" class="card js-upload-form">
-			<div class="card-header">Choose Files to Convert</div>
-			<div class="card-body">
-			  <div class="form-group row">
-				<div class="col-sm-4">
-				  <label class="btn btn-outline-secondary">
-					Select Files
-					<input type="file" class="hidden-xs-up js-file-input" name="uploadfile"
-						   onchange="filesSelected()"
-						   onclick="clearSelectedFiles()"
-						   hidden multiple>
-				  </label>
-				</div>
-				<span class="col">You have selected <span class="js-count">0</span> file(s)</span>
-			  </div>
-			  <div class="row justify-content-end">
-				<button type="submit" class="btn btn-primary">Convert</button>
-			  </div>
-			  <hr />
-			  <div class="js-list mt-4"></div>
-			</div>
-		  </form>
-		  <p class="mt-4">
-			Only HEIC files will be converted, others will be ignored. Once conversion is complete a Zip file with all
-			of the converted files will be downloaded. You can view conversion status above.
-		  </p>
-		  <div class="mt-4">
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<ins class="adsbygoogle"
-				 style="display:block; text-align:center;"
-				 data-ad-layout="in-article"
-				 data-ad-format="fluid"
-				 data-ad-client="ca-pub-5453350025781479"
-				 data-ad-slot="2092566710"></ins>
-			<script>
-			 (adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		  </div>
-		  <p class="mt-4">	
-			The <a href="https://fileinfo.com/extension/heic">HEIC</a> file format is not readily viewable on all
-			devices. As such, I've created this friendly application to bulk convert HEIC files to the JPEG file
-			format that we've grown to love. <span class="text-danger">Note, however, that eventually
-			you will want to move to HEIC once support is ubiquitous. It is a beneficial file format providing
-			half file size for similar quality as jpec format.
-		  </p>
-		</main>
-		<aside class="col-md-4">
-		  <div>
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- heic-aside-1 -->
-			<ins class="adsbygoogle"
-				 style="display:block"
-				 data-ad-client="ca-pub-5453350025781479"
-				 data-ad-slot="4227118926"
-				 data-ad-format="auto"></ins>
-			<script>
-			 (adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		  </div>
-		  <div class="mt-4"></div>
-		  <div class="mt-4">
-			<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-			<!-- heic-aside-2 -->
-			<ins class="adsbygoogle"
-				 style="display:block"
-				 data-ad-client="ca-pub-54533XF50025781479"
-				 data-ad-slot="5731718388"
-				 data-ad-format="auto"></ins>
-			<script>
-			 (adsbygoogle = window.adsbygoogle || []).push({});
-			</script>
-		  </div>
-		</aside>
+    <section class="container">
+      <header class="text-center">
+	<h1>Convert HEIC Image Files to JPEG <span class="badge badge-secondary">Free</span></h1>
+      </header>
+      <hr />
+      <div class="row">
+	<main class="col-md-8">
+	  <h2>Having trouble viewing photos you've taken on iPhone?</h2>
+	  <p>
+	    Apple recently launched iOS 11 and, with it, they've rolled out a
+	    <a href="https://fileinfo.com/extension/heic" title="Details of the HEIC file format">
+	      new file format
+	    </a> that is not readily viewable on all devices. Convert them to your beloved JPEG below.
+	  </p>
+	  <form enctype="multipart/form-data" action="/convert" method="POST" class="card js-upload-form">
+	    <div class="card-header">Choose Files to Convert</div>
+	    <div class="card-body">
+	      <div class="form-group row">
+		<div class="col-sm-4">
+		  <label class="btn btn-outline-secondary">
+		    Select Files
+		    <input type="file" class="hidden-xs-up js-file-input" name="uploadfile"
+			   onchange="filesSelected()"
+			   onclick="clearSelectedFiles()"
+			   hidden multiple>
+		  </label>
+		</div>
+		<span class="col">You have selected <span class="js-count">0</span> file(s)</span>
+	      </div>
+	      <div class="row justify-content-end">
+		<button type="submit" class="btn btn-primary">Convert</button>
+	      </div>
+	      <hr />
+	      <div class="js-list mt-4"></div>
+	    </div>
+	  </form>
+	  <p class="mt-4">
+	    Convert all of your  heic files to  jpg/jpeg for free.
+	  </p>
+	  <p class="mt-4">
+	    Only <strong>HEIC files</strong> will be converted, others will be ignored. Once conversion is complete a Zip file with all
+	    of the converted files will be downloaded. You can view conversion status above.
+	  </p>
+	  <div class="mt-4">
+	    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	    <ins class="adsbygoogle"
+		 style="display:block; text-align:center;"
+		 data-ad-layout="in-article"
+		 data-ad-format="fluid"
+		 data-ad-client="ca-pub-5453350025781479"
+		 data-ad-slot="2092566710"></ins>
+	    <script>
+	      (adsbygoogle = window.adsbygoogle || []).push({});
+	    </script>
 	  </div>
-	</section>
-	<iframe src="about:blank" class="js-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
+	  <p class="mt-4">	
+	    The <a href="https://fileinfo.com/extension/heic" title="Details on the HEIC file format">HEIC</a>
+	    file format is not readily viewable on all devices. As such, I've created this friendly application
+	    to bulk convert HEIC files to the JPEG file format that we've grown to love.
+	    I built this application out of the kindness of my heart. Not really, actually I built this for the opportunity
+	    to learn a bit more about writing web servers in Golang and to learn more about websockets. It was my pleasure.
+	    I hope you enjoy this site and use it for great good.
+	    <span class="text-danger">
+	      Note, however, that eventually you will want to move to HEIC once support is ubiquitous.
+	      It is a beneficial file format providing half file size for similar quality as jpec format.
+	    </span>
+	  </p>
+	</main>
+	<aside class="col-md-4">
+	  <!-- Your like button code -->
+	  <div class="fb-like" 
+	       data-href="http://heic-to-jpeg.meta-webdev.com" 
+	       data-layout="standard" 
+	       data-action="like" 
+	       data-show-faces="true">
+	  </div>
+	  <div>
+	    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	    <!-- heic-aside-1 -->
+	    <ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="ca-pub-5453350025781479"
+		 data-ad-slot="4227118926"
+		 data-ad-format="auto"></ins>
+	    <script>
+	      (adsbygoogle = window.adsbygoogle || []).push({});
+	    </script>
+	  </div>
+	  <div class="mt-4"></div>
+	  <div class="mt-4">
+	    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	    <!-- heic-aside-2 -->
+	    <ins class="adsbygoogle"
+		 style="display:block"
+		 data-ad-client="ca-pub-54533XF50025781479"
+		 data-ad-slot="5731718388"
+		 data-ad-format="auto"></ins>
+	    <script>
+	      (adsbygoogle = window.adsbygoogle || []).push({});
+	    </script>
+	  </div>
+	</aside>
+      </div>
+    </section>
+    <!-- Load Facebook SDK for JavaScript -->
+    <div id="fb-root"></div>
+    <script>(function(d, s, id) {
+      var js, fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) return;
+      js = d.createElement(s); js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1";
+      fjs.parentNode.insertBefore(js, fjs);
+      }(document, 'script', 'facebook-jssdk'));</script>
+
+    <iframe src="about:blank" class="js-iframe" style="width:0;height:0;border:0; border:none;"></iframe>
   </body>
   <script type="text/javascript">
-   function clearSelectedFiles() {
-	 const inputEl = document.querySelector('.js-file-input');
-	 const fileListEl = document.querySelector('.js-list');
-	 const fileCountEl = document.querySelector('.js-count');
-	 while (fileListEl.firstChild) {
-	   fileListEl.removeChild(fileListEl.firstChild);
-	 }
-	 fileCountEl.innerHTML = '0';
-	 inputEl.value = '';
-   }
-   function filesSelected() {
-	 const inputEl = document.querySelector('.js-file-input');
-	 const countFiles = inputEl.files.length || 0;
-	 const fileListEl = document.querySelector('.js-list');
-	 const fileCountEl = document.querySelector('.js-count');
-	 const docFrag = document.createDocumentFragment();
-	 if (countFiles > 0) {
-	   const section = document.createElement('section');
-	   const header = document.createElement('h3');
-	   header.className = 'js-status';
-	   header.innerHTML = 'Uploading Files:';
-	   section.appendChild(header)
+    function clearSelectedFiles() {
+    const inputEl = document.querySelector('.js-file-input');
+    const fileListEl = document.querySelector('.js-list');
+    const fileCountEl = document.querySelector('.js-count');
+    while (fileListEl.firstChild) {
+    fileListEl.removeChild(fileListEl.firstChild);
+    }
+    fileCountEl.innerHTML = '0';
+    inputEl.value = '';
+    }
+    function filesSelected() {
+    const inputEl = document.querySelector('.js-file-input');
+    const countFiles = inputEl.files.length || 0;
+    const fileListEl = document.querySelector('.js-list');
+    const fileCountEl = document.querySelector('.js-count');
+    const docFrag = document.createDocumentFragment();
+    if (countFiles > 0) {
+    const section = document.createElement('section');
+    const header = document.createElement('h3');
+    header.className = 'js-status';
+    header.innerHTML = 'Uploading Files:';
+    section.appendChild(header)
 
-	   const ulFiles = document.createElement('ul');
-	   ulFiles.className = 'list-group';
-	   
-	   for (let i = 0; i < countFiles; i++) {
-		 const li = document.createElement('li');
-		 const file = inputEl.files[i];
-		 li.className = 'list-group-item js-file-progress js-file-progress-' + i;
-		 li.innerHTML = '<span>' + file.name + '<span class="js-file-status float-right"><span>';
+    const ulFiles = document.createElement('ul');
+    ulFiles.className = 'list-group';
+    
+    for (let i = 0; i < countFiles; i++) {
+			const li = document.createElement('li');
+			const file = inputEl.files[i];
+			li.className = 'list-group-item js-file-progress js-file-progress-' + i;
+			li.innerHTML = '<span>' + file.name + '<span class="js-file-status float-right"><span>';
 
-		 const progress = document.createElement('div');
-		 progress.className = 'progress';
-		 progress.innerHTML = '<div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-volumemax="100"></div>';
-		 li.appendChild(progress);
-		 ulFiles.appendChild(li);
-	   }
+			const progress = document.createElement('div');
+			progress.className = 'progress';
+			progress.innerHTML = '<div class="progress-bar" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-volumemax="100"></div>';
+			li.appendChild(progress);
+			ulFiles.appendChild(li);
+			}
 
-	   section.appendChild(ulFiles);
-	   docFrag.appendChild(section);
-	 }
-	 fileListEl.innerHTML = '';
-	 fileListEl.appendChild(docFrag);
-	 fileCountEl.innerHTML = countFiles;
-   }
-   function clearProgress() {
-	 const inputEl = document.querySelector('.js-file-input');
-	 for (let i = 0; i < inputEl.files.length; i++) {
-	   const progress = document.querySelector('.js-file-progress-' + i + ' .progress-bar');
-	   progress.style.width = '0%';
-	 }
-   }
-   
-   function onload() {
-	 document
-	   .querySelector(".js-upload-form")
-	   .addEventListener('submit', function processForm(e) {
-		 e.preventDefault();
-		 clearProgress();
+			section.appendChild(ulFiles);
+			docFrag.appendChild(section);
+			}
+			fileListEl.innerHTML = '';
+			fileListEl.appendChild(docFrag);
+			fileCountEl.innerHTML = countFiles;
+			}
+			function clearProgress() {
+			const inputEl = document.querySelector('.js-file-input');
+			for (let i = 0; i < inputEl.files.length; i++) {
+					    const progress = document.querySelector('.js-file-progress-' + i + ' .progress-bar');
+					    progress.style.width = '0%';
+					    }
+					    }
+					    
+					    function onload() {
+					    document
+					    .querySelector(".js-upload-form")
+					    .addEventListener('submit', function processForm(e) {
+					    e.preventDefault();
+					    clearProgress();
 
-		 const form = e.currentTarget;
-		 const multipleFiles = form.querySelector('input[type=file]');
+					    const form = e.currentTarget;
+					    const multipleFiles = form.querySelector('input[type=file]');
 
-		 // only if there is something to do
-		 if (multipleFiles.files.length) {
-		   const submit = form.querySelector('[type=submit]');
-		   const request = new XMLHttpRequest();
-		   const fileData = [];
-		   let totalSize = 0;
-		   const formData = Array.prototype.reduce.call(
-			 multipleFiles.files,
-			 function (formData, file, i) {
-			   totalSize += file.size;
-			   fileData.push(file.size);
-			   formData.append(multipleFiles.name, file);
-			   return formData;
-			 },
-			 new FormData()
-		   );
+					    // only if there is something to do
+					    if (multipleFiles.files.length) {
+					    const submit = form.querySelector('[type=submit]');
+					    const request = new XMLHttpRequest();
+					    const fileData = [];
+					    let totalSize = 0;
+					    const formData = Array.prototype.reduce.call(
+					    multipleFiles.files,
+					    function (formData, file, i) {
+					    totalSize += file.size;
+					    fileData.push(file.size);
+					    formData.append(multipleFiles.name, file);
+					    return formData;
+					    },
+					    new FormData()
+					    );
 
-		   // avoid multiple repeated uploads
-		   // (histeric clicks on slow connection)
-		   submit.disabled = true;
+					    // avoid multiple repeated uploads
+					    // (histeric clicks on slow connection)
+					    submit.disabled = true;
 
-		   // do the request using form info
-		   request.onload = function(e) {
-			 // make this form usable again
-			 submit.disabled = false;
-		   };
-		   request.upload.onprogress = function(data) {
-			 let total = data.loaded;
-			 for (let i = 0; i < fileData.length; i++) {
-			   let pct = 0;
-			   total -= fileData[i];
-			   if (total >= 0) {
-				 pct = 100;
-			   } else {
-				 pct = Math.max(0, total / fileData[i]);
-			   }
-			   const progress = form.querySelector('.js-file-progress-' + i + ' .progress-bar');
-			   progress.style.width = pct.toString() + '%';
-			 }
-			 if (data.loaded >= data.total) {
-			   setTimeout(function() {
-				 const header = document.querySelector('.js-status');
-				 header.innerHTML = 'Converting Files:';
-				 // open websocket
-				 const fileListEl = document.querySelectorAll('.js-list .list');
-				 const socket = new WebSocket('ws://' + window.location.hostname + (location.port ? ':' + location.port : '') +
-											  '/socket');
-				 socket.onopen = function (event) {
-				   socket.send("Here's some text that the server is urgently awaiting!");
-				 };
-				 socket.onmessage = function (event) {
-			           console.log(event);
-				   const map = JSON.parse(event.data)
-				   const convertedFiles = [];
-				   const progressBars = document.querySelectorAll('.js-file-progress');
-				   for (const prop in map) {
-					 convertedFiles.push(stripExtension(basename(prop, '/')));
-				   }
-				   for (let i = 0; i < progressBars.length; i++) {
-					 if (convertedFiles.indexOf(stripExtension(basename(progressBars[i].innerText))) !== -1) {
-					   const progress = progressBars[i].querySelector('.progress-bar');
-					   const status = progressBars[i].querySelector('.js-file-status');
-					   status.innerHTML = 'Converted';
-					   progress.className = progress.className + ' bg-success';
-					 }
-				   } 
-				   if (map.hasOwnProperty('complete')) {
-					 const iframe = document.querySelector('.js-iframe');
-					 iframe.src = '/download';
-					 window.socket.close();
-					 const header = document.querySelector('.js-status');
-					 header.innerHTML = 'Downloading Zip:';
-				   }
-				 }
-				 window.socket = socket;
-			   }, 300);
-			 }
-		   };
-		   request.open(form.method, form.action);
-		   request.responseType = 'blob';
-		   // want to distinguish from non-JS submits
-		   request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-		   request.send(formData);
-		 }
-	   });
-   };
-   function basename(str, sep) {
-	 const separator = sep || '/';
-	 return str.substr(str.lastIndexOf(separator) + 1);
-   }
-   function stripExtension(str) {
-	 return str.substr(0, str.lastIndexOf('.'));
-   }
-   document.addEventListener('DOMContentLoaded', function() { onload(); }, false);
-  </script>
+					    // do the request using form info
+					    request.onload = function(e) {
+					    // make this form usable again
+					    submit.disabled = false;
+					    };
+					    request.upload.onprogress = function(data) {
+					    let total = data.loaded;
+					    for (let i = 0; i < fileData.length; i++) {
+								let pct = 0;
+								total -= fileData[i];
+								if (total >= 0) {
+					    pct = 100;
+					    } else {
+					    pct = Math.max(0, total / fileData[i]);
+					    }
+					    const progress = form.querySelector('.js-file-progress-' + i + ' .progress-bar');
+					    progress.style.width = pct.toString() + '%';
+					    }
+					    if (data.loaded >= data.total) {
+			setTimeout(function() {
+			const header = document.querySelector('.js-status');
+			header.innerHTML = 'Converting Files:';
+			// open websocket
+			const fileListEl = document.querySelectorAll('.js-list .list');
+			const socket = new WebSocket('ws://' + window.location.hostname + (location.port ? ':' + location.port : '') +
+			'/socket');
+			socket.onopen = function (event) {
+			socket.send("Here's some text that the server is urgently awaiting!");
+			};
+			socket.onmessage = function (event) {
+			console.log(event);
+			const map = JSON.parse(event.data)
+			const convertedFiles = [];
+			const progressBars = document.querySelectorAll('.js-file-progress');
+			for (const prop in map) {
+			convertedFiles.push(stripExtension(basename(prop, '/')));
+			}
+			for (let i = 0; i < progressBars.length; i++) {
+					    if (convertedFiles.indexOf(stripExtension(basename(progressBars[i].innerText))) !== -1) {
+					    const progress = progressBars[i].querySelector('.progress-bar');
+					    const status = progressBars[i].querySelector('.js-file-status');
+					    status.innerHTML = 'Converted';
+					    progress.className = progress.className + ' bg-success';
+					    }
+					    } 
+					    if (map.hasOwnProperty('complete')) {
+					    const iframe = document.querySelector('.js-iframe');
+					    iframe.src = '/download';
+					    window.socket.close();
+					    const header = document.querySelector('.js-status');
+					    header.innerHTML = 'Downloading Zip:';
+					    }
+					    }
+					    window.socket = socket;
+					    }, 300);
+					    }
+					    };
+					    request.open(form.method, form.action);
+					    request.responseType = 'blob';
+					    // want to distinguish from non-JS submits
+					    request.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+					    request.send(formData);
+					    }
+					    });
+					    };
+					    function basename(str, sep) {
+					    const separator = sep || '/';
+					    return str.substr(str.lastIndexOf(separator) + 1);
+					    }
+					    function stripExtension(str) {
+					    return str.substr(0, str.lastIndexOf('.'));
+					    }
+					    document.addEventListener('DOMContentLoaded', function() { onload(); }, false);
+					    </script>
 </html>
 
