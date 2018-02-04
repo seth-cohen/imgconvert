@@ -2,6 +2,7 @@ package main
 
 import (
 	"archive/zip"
+	"compress/gzip"
 	"fmt"
 	"github.com/go-redis/redis"
 	"github.com/gorilla/mux"
@@ -152,7 +153,17 @@ func createZip(fileName string, imgDir string) error {
 // HTTP Handlers
 func index(w http.ResponseWriter, r *http.Request) {
 	t, _ := template.ParseFiles("templates/index.html")
-	t.Execute(w, nil)
+	if !strings.Contains(r.Header.Get("Accept-Encoding"), "gzip") {
+		t.Execute(w, nil)
+		return
+	}
+
+	w.Header().Set("Content-Type", "text/html")
+	w.Header().Set("Content-Encoding", "gzip")
+	gzipWriter := gzip.NewWriter(w)
+	defer gzipWriter.Close()
+
+	t.Execute(gzipWriter, nil)
 }
 
 func handleFavicon(w http.ResponseWriter, r *http.Request) {
