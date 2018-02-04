@@ -49,7 +49,7 @@ func registerHandlers() {
 	r.HandleFunc("/socket", socketHandler)
 	r.HandleFunc("/download", downloadFileHandler)
 	r.HandleFunc("/favicon.ico", handleFavicon)
-	r.HandleFunc("heic-screenshot.jpg", handleImage)
+	r.HandleFunc("/heic-screenshot.jpg", handleImage)
 	r.HandleFunc("/", index)
 	http.Handle("/", r)
 }
