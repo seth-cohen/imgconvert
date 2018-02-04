@@ -49,6 +49,7 @@ func registerHandlers() {
 	r.HandleFunc("/socket", socketHandler)
 	r.HandleFunc("/download", downloadFileHandler)
 	r.HandleFunc("/favicon.ico", handleFavicon)
+	r.HandleFunc("heic-screenshot.jpg", handleImage)
 	r.HandleFunc("/", index)
 	http.Handle("/", r)
 }
@@ -168,6 +169,10 @@ func index(w http.ResponseWriter, r *http.Request) {
 
 func handleFavicon(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "assets/favicon.ico")
+}
+
+func handleImage(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "assets/heic-screenshot.jpg")
 }
 
 func convertHandler(w http.ResponseWriter, r *http.Request) {
